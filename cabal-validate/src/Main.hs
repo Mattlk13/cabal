@@ -56,6 +56,7 @@ runStep opts step = do
         LibSuiteExtras -> libSuiteExtras opts
         CliSuite -> cliSuite opts
         CliTests -> cliTests opts
+        SolverTests -> solverTests opts
         SolverBenchmarksTests -> solverBenchmarksTests opts
         SolverBenchmarksRun -> solverBenchmarksRun opts
   withTiming (startTime opts) title action
@@ -408,6 +409,17 @@ cliSuite opts = do
         ++ tastyArgs opts
         ++ rtsArgs opts
     )
+
+-- | Run the @cabal-install-solver@ unit tests
+solverTests :: Opts -> IO ()
+solverTests opts = do
+  command <- cabalListBin opts "cabal-install-solver:test:unit-tests"
+
+  timedWithCwd
+    opts
+    "cabal-install-solver"
+    command
+    []
 
 -- | Run the @solver-benchmarks@ unit tests.
 solverBenchmarksTests :: Opts -> IO ()
