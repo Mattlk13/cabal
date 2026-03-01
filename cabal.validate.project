@@ -17,3 +17,6 @@ package cabal-install
 
 package Cabal
   flags: +git-rev
+
+package cabal-install-solver
+  flags: +debug-expensive-assertions

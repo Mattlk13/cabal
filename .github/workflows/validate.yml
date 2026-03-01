@@ -232,7 +232,7 @@ jobs:
         run: |
           set +e
           rc=0
-          tests="lib-tests lib-suite cli-tests cli-suite"
+          tests="lib-tests lib-suite cli-tests cli-suite solver-tests"
           if [ "${{ matrix.ghc }}" = "${{ env.GHC_FOR_SOLVER_BENCHMARKS }}" ]; then
             tests="$tests solver-benchmarks-tests solver-benchmarks-run"
           fi
